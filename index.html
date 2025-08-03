@@ -12,35 +12,29 @@
       }
 
       #heart {
-        font-size: 100px;
         cursor: pointer;
         transition: transform 0.3s ease;
         display: inline-block;
         position: relative;
         width: 150px;
         height: 150px;
-        line-height: 150px;
       }
 
-      #heart::before {
-        content: "❤️";
+      #emoji {
         font-size: 100px;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        margin: auto;
+        display: block;
       }
 
       #counter {
         font-size: 14px;
-        color: #fff;
+        color: #d6336c;
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         width: 120px;
         line-height: 1.2;
+        pointer-events: none;
       }
 
       #message {
@@ -54,6 +48,7 @@
     <h1>Click the heart!</h1>
 
     <div id="heart">
+      <div id="emoji">❤️</div>
       <div id="counter"></div>
     </div>
 
@@ -61,8 +56,8 @@
 
     <script>
       const heart = document.getElementById("heart");
+      const emoji = document.getElementById("emoji");
       const counter = document.getElementById("counter");
-      const message = document.getElementById("message");
 
       let size = 100;
 
@@ -76,7 +71,7 @@
         const hours = Math.floor(minutes / 60);
         const days = Math.floor(hours / 24);
 
-        const months = Math.floor(days / 30.4375); // average month length
+        const months = Math.floor(days / 30.4375);
         const years = Math.floor(months / 12);
 
         const display = `${years}y ${months % 12}m ${days % 30}d\n${
@@ -90,7 +85,7 @@
 
       heart.addEventListener("click", () => {
         size += 10;
-        heart.style.fontSize = size + "px";
+        emoji.style.fontSize = size + "px";
       });
     </script>
   </body>
