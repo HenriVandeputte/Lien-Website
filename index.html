@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>For My Love - Lien Vanhoorde 💖</title>
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background: #ffe6f0;
+        text-align: center;
+        padding: 50px;
+      }
+
+      #heart {
+        font-size: 100px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        display: inline-block;
+        position: relative;
+        width: 150px;
+        height: 150px;
+        line-height: 150px;
+      }
+
+      #heart::before {
+        content: "❤️";
+        font-size: 100px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+      }
+
+      #counter {
+        font-size: 14px;
+        color: #fff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 120px;
+        line-height: 1.2;
+      }
+
+      #message {
+        margin-top: 30px;
+        font-size: 24px;
+        color: #d6336c;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Click the heart!</h1>
+
+    <div id="heart">
+      <div id="counter"></div>
+    </div>
+
+    <div id="message">I love you more every second 💗</div>
+
+    <script>
+      const heart = document.getElementById("heart");
+      const counter = document.getElementById("counter");
+      const message = document.getElementById("message");
+
+      let size = 100;
+
+      function updateCounter() {
+        const startDate = new Date("2023-06-08T00:00:00");
+        const now = new Date();
+        const diff = now - startDate;
+
+        const seconds = Math.floor(diff / 1000);
+        const minutes = Math.floor(seconds / 60);
+        const hours = Math.floor(minutes / 60);
+        const days = Math.floor(hours / 24);
+
+        const months = Math.floor(days / 30.4375); // average month length
+        const years = Math.floor(months / 12);
+
+        const display = `${years}y ${months % 12}m ${days % 30}d\n${
+          hours % 24
+        }h ${minutes % 60}m ${seconds % 60}s`;
+        counter.textContent = display;
+      }
+
+      setInterval(updateCounter, 1000);
+      updateCounter();
+
+      heart.addEventListener("click", () => {
+        size += 10;
+        heart.style.fontSize = size + "px";
+      });
+    </script>
+  </body>
+</html>
