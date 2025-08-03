@@ -3,66 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <title>For My Love - Lien Vanhoorde 💖</title>
-    <style>
-      body {
-        font-family: "Segoe UI", sans-serif;
-        background: #ffe6f0;
-        text-align: center;
-        padding: 50px;
-      }
-
-      #heart {
-        cursor: pointer;
-        transition: transform 0.3s ease;
-        display: inline-block;
-        position: relative;
-        width: 150px;
-        height: 150px;
-      }
-
-      #emoji {
-        font-size: 100px;
-        display: block;
-      }
-
-      #counter {
-        font-size: 14px;
-        color: #d6336c;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 120px;
-        line-height: 1.2;
-        pointer-events: none;
-      }
-
-      #message {
-        margin-top: 30px;
-        font-size: 24px;
-        color: #d6336c;
-      }
-    </style>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Click the heart!</h1>
-
     <div id="heart">
       <div id="emoji">❤️</div>
       <div id="counter"></div>
     </div>
 
     <div id="message">I love you more every second 💗</div>
+    <div id="confetti-left" class="confetti-container"></div>
+    <div id="confetti-right" class="confetti-container"></div>
 
     <script>
       const heart = document.getElementById("heart");
       const emoji = document.getElementById("emoji");
       const counter = document.getElementById("counter");
 
-      let size = 100;
+      let size = 200;
 
       function updateCounter() {
-        const startDate = new Date("2023-06-08T00:00:00");
+        const startDate = new Date("2023-06-08T22:00:00");
         const now = new Date();
         const diff = now - startDate;
 
@@ -84,9 +45,57 @@
       updateCounter();
 
       heart.addEventListener("click", () => {
-        size += 10;
+        size += 5;
         emoji.style.fontSize = size + "px";
       });
+
+      const colors = [
+        "#ff4b5c",
+        "#ffb400",
+        "#36f1cd",
+        "#6a67ce",
+        "#ffc6f7",
+        "#00c2ff",
+        "#ff9de2",
+      ];
+
+      function createConfetti() {
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.backgroundColor = color;
+
+        confetti.style.setProperty(
+          "--x-spread",
+          Math.floor(Math.random() * 500 - 250)
+        );
+        confetti.style.setProperty(
+          "--y-spread",
+          Math.floor(Math.random() * 1000 + 700)
+        );
+
+        // Add styling and position logic here
+        document.body.appendChild(confetti);
+
+        // Optional: remove confetti after animation
+        setTimeout(() => confetti.remove(), 5000);
+      }
+
+      function createConfettiBurst() {
+        for (let i = 0; i < 200; i++) {
+          createConfetti();
+        }
+      }
+
+      const today = new Date();
+      const isThirdDay = today.getDate() === 8;
+
+      if (isThirdDay) {
+        setInterval(() => {
+          createConfettiBurst();
+        }, 500); // every 1000ms = 1 second
+      }
     </script>
   </body>
 </html>

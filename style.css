@@ -1,0 +1,98 @@
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: #ffe6f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  overflow: hidden;
+}
+
+#heart {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#emoji {
+  font-size: 200px;
+  display: block;
+  transition: font-size 0.3s ease;
+}
+
+#counter {
+  font-size: 20px;
+  color: #ffc6da;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 140px;
+  line-height: 1.2;
+  text-align: center;
+  pointer-events: none;
+  font-weight: bolder;
+}
+
+#message {
+  margin-top: 30px;
+  font-size: 24px;
+  color: #d6336c;
+  text-align: center;
+}
+
+.confetti {
+  width: 10px;
+  height: 10px;
+  background-color: pink;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  animation: popConfetti 5s linear forwards;
+  pointer-events: none;
+}
+
+@keyframes popConfetti {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(
+        calc(var(--x-spread) * 1px),
+        calc(var(--y-spread) * -1px)
+      )
+      rotate(360deg) scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(var(--x-spread) * 2px), 100vh) rotate(720deg)
+      scale(1);
+    opacity: 0;
+  }
+}
+
+/* Confetti container tweaks */
+.confetti-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 999;
+}
+
+#confetti-left {
+  left: 0;
+}
+
+#confetti-right {
+  right: 0;
+}
